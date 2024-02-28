@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda Kantor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Agenda Kantor</h1>
+        </header>
+        <main>
+            <div class="agenda">
+                <h2>Tambah Agenda Baru</h2>
+                <form action="proses_tambah.php" method="post">
+                    <label for="judul">Judul:</label><br>
+                    <input type="text" id="judul" name="judul" required><br>
+                    <label for="deskripsi">Deskripsi:</label><br>
+                    <textarea id="deskripsi" name="deskripsi"></textarea><br>
+                    <label for="tanggal">Tanggal:</label><br>
+                    <input type="date" id="tanggal" name="tanggal" required><br>
+                    <label for="waktu">Waktu:</label><br>
+                    <input type="time" id="waktu" name="waktu"><br><br>
+                    <input type="submit" value="Simpan">
+                </form>
+
+                <h2>Hasil Agenda</h2>
+                <div class="hasil-agenda">
+                    <!-- Tempat untuk menampilkan hasil agenda dari proses tambah -->
+                    <!-- Misalnya: -->
+                    <!-- <div class="agenda-item">
+                        <h3>Judul Agenda</h3>
+                        <p>Deskripsi: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <p>Tanggal: 2024-02-28</p>
+                        <p>Waktu: 09:00</p>
+                    </div> -->
+                </div>
+            </div>
+        </main>
+        <footer class="footer">
+            <p>&copy; 2024 Agenda Kantor</p>
+        </footer>
+    </div>
+</body>
+</html>
