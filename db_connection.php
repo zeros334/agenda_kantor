@@ -1,18 +1,18 @@
 <?php
-// Koneksi ke database
 $host = 'localhost';
-$username = 'root';
-$password = '';
-$database = 'agenda';
+$db = 'agenda';
+$user = 'root';
+$pass = '';
 
-$koneksi = mysqli_connect($host, $username, $password, $database);
-
-if (!$koneksi) {
-    die("Koneksi database gagal: " . mysqli_connect_error());
+try {
+    $koneksi = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
+    $koneksi->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Could not connect to the database $db :" . $e->getMessage());
 }
 
-// Ambil data acara dari database
 $query = "SELECT * FROM events";
-$result = mysqli_query($koneksi, $query);
+
+
 
 ?>
