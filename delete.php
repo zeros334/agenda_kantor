@@ -1,24 +1,29 @@
 <?php
-require_once 'db_connection.php';
-
+require 'db_connection.php';
 
 if (isset($_GET['id'])) {
-    $event_id = $_GET['id'];
+    $id = $_GET['id'];
 
-   
-    $query = "DELETE FROM events WHERE id = $event_id";
-    
-    if (mysqli_query($koneksi, $query)) {
-        
-        header("Location: index.php");
-        exit();
-    } else {
-        echo "Error: " . $query . "<br>" . mysqli_error($koneksi);
+    // Check if the ID is valid (a positive integer)
+    if (filter_var($id, FILTER_VALIDATE_INT, array("options" => array("min_range"=>1))) === false) {
+        die("Invalid ID.");
+    }
+
+    try {
+        $stmt = $koneksi->prepare('DELETE FROM events WHERE id = :id');
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        if ($stmt->rowCount()) {
+            echo "Record deleted successfully.";
+        } else {
+            echo "No record found with the specified ID.";
+        }
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
     }
 } else {
-    echo "Event ID not provided.";
-    exit();
+    echo "ID parameter is missing.";
 }
 
-mysqli_close($koneksi);
 ?>
