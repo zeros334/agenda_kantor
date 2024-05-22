@@ -11,9 +11,7 @@ if (!isset($_SESSION['user_id'])) {
 
 echo "Welcome, " . $_SESSION['username'] . "!<br>";
 
-if ($_SESSION['role'] == 'admin') {
-    echo "<a href='manage_agenda.php'>Manage Agenda</a><br>";
-}
+
 function fetchAgendas($koneksi) {
     try {
         return $koneksi->query("SELECT * FROM events")->fetchAll();
@@ -25,7 +23,6 @@ function fetchAgendas($koneksi) {
 $agendas = fetchAgendas($koneksi);
 
 ?>
-<a href="view_agenda.php">View Agenda</a><br>
 
 <!DOCTYPE html>
 <html lang="en">
